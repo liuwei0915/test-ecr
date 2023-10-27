@@ -29,12 +29,13 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: "new-1-repo"
-          IMAGE_TAG: v6
+          IMAGE_TAG: v7
         run: |
           docker build -t $ECR_REGISTRY/new-1-repo:$IMAGE_TAG .
           docker push $ECR_REGISTRY/new-1-repo:$IMAGE_TAG
           
           aws ecr get-login-password --region us-west-1 | docker login --username AWS --password-stdin 346163310511.dkr.ecr.us-west-1.amazonaws.com
           # echo "::set-output name=image::$ECR_REGISTRY/new-1-repo:$IMAGE_TAG"
-          docker tag $ECR_REGISTRY/new-1-repo:$IMAGE_TAG 346163310511.dkr.ecr.us-west-1.amazonaws.com/new-1-repo:$IMAGE_TAG
-          docker push 346163310511.dkr.ecr.us-west-1.amazonaws.com/new-1-repo:$IMAGE_TAG
+          docker push $ECR_REGISTRY/new-1-repo:$IMAGE_TAG
+          # docker tag $ECR_REGISTRY/new-1-repo:$IMAGE_TAG 346163310511.dkr.ecr.us-west-1.amazonaws.com/new-1-repo:$IMAGE_TAG
+          # docker push 346163310511.dkr.ecr.us-west-1.amazonaws.com/new-1-repo:$IMAGE_TAG
