@@ -29,8 +29,10 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: "new-1-repo"
-          IMAGE_TAG: v2
+          IMAGE_TAG: v3
         run: |
           docker build -t $ECR_REGISTRY/new-1-repo:$IMAGE_TAG .
           docker push $ECR_REGISTRY/new-1-repo:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/new-1-repo:$IMAGE_TAG"
+          docker tag new-1-repo:$IMAGE_TAG 346163310511.dkr.ecr.us-west-1.amazonaws.com/new-1-repo:$IMAGE_TAG
+          docker push 346163310511.dkr.ecr.us-west-1.amazonaws.com/new-1-repo:$IMAGE_TAG
