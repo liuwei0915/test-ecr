@@ -39,3 +39,4 @@ jobs:
           docker push $ECR_REGISTRY/new-1-repo:$IMAGE_TAG
           # docker tag $ECR_REGISTRY/new-1-repo:$IMAGE_TAG 346163310511.dkr.ecr.us-west-1.amazonaws.com/new-1-repo:$IMAGE_TAG
           # docker push 346163310511.dkr.ecr.us-west-1.amazonaws.com/new-1-repo:$IMAGE_TAG
+          echo hello
